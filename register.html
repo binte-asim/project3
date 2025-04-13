@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="register.css">
+    <title>Registeration page</title>
+</head>
+<body>
+    <!--header-->
+    <header><div class="container">
+        <div class="logo">
+          <img src="images/logo2.png" alt="Vibe Wear Logo">
+          <h1>Vibe Wear</h1>
+        </div></header>
+<div class="main-box">
+<h2>Create an account</h2>
+<!--form-->
+<form onsubmit="func(); return false;">
+<div class="main-label">
+<div class="label1">
+    <label>First Name</label>
+    <div class="input1" >
+        <input placeholder="Enter First Name" id="F-N"></input>
+    </div>
+    <div id="pass_error1">
+     Please fill up your First name
+      </div>
+</div>
+<div class="label1">
+    <label>Last Name</label>
+    <div class="input1" >
+        <input placeholder="Enter Last Name" id="L-N"></input>
+        
+</div>
+<div id="pass_error2">
+  
+  Please fill up your last name</div>
+
+</div>
+<div class="label1">
+    <label>Email Adress</label>
+    <div class="input1">
+      
+        <input  type="email"   placeholder="Enter Email Address" id="EMAIL"></input>
+    </div>
+    <div id="pass_error3">
+      Email Adress is required
+      </div>
+</div>
+<div class="label1">
+    <label>Password</label>
+    <div class="input1">
+      
+        <input type="password" placeholder="Enter Password" id="N-P"></input></div>
+    <div id="pass_error4">
+      
+      Please fill up your Password
+      
+    </div>
+</div>
+<div class="label1">
+    <label>Confirm Password</label>
+    <div class="input1">
+        <input type="password" placeholder="Re-enter Password" id="S-P"></input>
+    </div>
+    <div id="pass_error5">
+      Re-enter your Password
+      </div>
+</div>
+</div>
+</form>
+<!--terms&condition-->
+<div class="checkbox1">
+    <input type="checkbox"/>
+    <label style="font-size: 10px;">I have read and understand the Privacy and Cookies Policy</label>
+    </div>
+
+
+<!--create an account button-->
+<div class="button1">
+    <button type="submit" onclick="func()">Create Account</button>
+</div>
+<p>Already have an account? <a href="signup.html" style="text-decoration: underline; color: blue;">Sign-in here.</a></p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--footer-->
+        <footer>
+            <div class="footer-container">
+              <div class="footer-section">
+                <h3>Contact Us</h3>
+                <ul>
+                  <li><i class="fas fa-map-marker-alt"></i> LDA avenue1 Block M plot 1167</li>
+                  <li><i class="fas fa-phone"></i> 03079158998</li>
+                  <li><i class="fas fa-envelope"></i> vibewear@gmail.com</li>
+                </ul>
+              </div>
+          
+             
+              <div class="footer-section">
+                <h3>Follow Us</h3>
+                <div class="social-links">
+                  <a href="#" aria-label="Facebook">
+                    <i class="fab fa-facebook-f"></i>
+                    <span>Facebook</span>
+                  </a>
+                  <a href="#" aria-label="Twitter">
+                    <i class="fab fa-twitter"></i>
+                    <span>Twitter</span>
+                  </a>
+                  <a href="#" aria-label="Instagram">
+                    <i class="fab fa-instagram"></i>
+                    <span>Instagram</span>
+                  </a>
+                  <a href="#" aria-label="LinkedIn">
+                    <i class="fab fa-linkedin-in"></i>
+                    <span>LinkedIn</span>
+                  </a>
+                </div>
+              </div>
+          
+           
+              <div class="footer-section">
+                <h3>About the Company</h3>
+                <p>We are a leading company dedicated to providing high-quality products and services. Our mission is to make your life better through innovation and excellence.</p>
+              </div>
+            </div>
+          
+          
+            <div class="footer-bottom">
+              <p>&copy; 2025 vibewear. All rights reserved.</p>
+            </div>
+          </footer>
+          <script src="register.js"></script>
+    
+</body>
+</html>

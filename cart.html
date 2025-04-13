@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cart - Vibe Wear</title>
+  <link rel="stylesheet" href="cart.css">
+  <link rel="stylesheet" href="styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    
+    
+</head>
+<body>
+
+  <header>
+    <div class="container">
+      <div class="logo">
+        <img src="images/logo2.png" alt="Vibe Wear Logo">
+        <h1>Vibe Wear</h1>
+      </div>
+      <div class="menu-toggle" onclick="toggleMenu()">
+        <i class="fas fa-bars"></i>
+      </div>
+      <nav>
+        <ul id="menu">
+          <li><a href="home.html">Home</a></li>
+          <li><a href="men.html">Men</a></li>
+          <li><a href="women.html">Women</a></li>
+          <li><a href="kids.html">Kids</a></li>
+        </ul>
+      </nav>
+      <div class="header-icons">
+        <div class="cart-icon">
+          <a href="signup.html" class="login-icon" title="Login/Signup">
+            <i class="fas fa-user-lock"></i>
+          </a>
+          <a href="cart.html" class="cart-icon">
+            <img src="images/icon.jpg" alt="Cart">
+            <span class="cart-count">0</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+
+  <section class="cart">
+    <div class="container1">
+      <h2>Your Cart</h2>
+      <div id="cart-items" class="cart-items">
+        <!-- Cart items will be inserted here by JavaScript -->
+      </div>
+      <div class="cart-summary">
+        <h3>Order Summary</h3>
+        <div class="summary-row">
+          <span>Subtotal</span>
+          <span id="subtotal">Rs 0</span>
+        </div>
+        <div class="summary-row">
+          <span>Delivery Charges</span>
+          <span id="delivery-charges">Rs 150</span>
+        </div>
+        <div class="summary-row total">
+          <span>Total</span>
+          <span id="total">Rs 150</span>
+        </div>
+        <button class="checkout-btn">Proceed to Checkout</button>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-container">
+      <div class="footer-section">
+        <h3>Contact Us</h3>
+        <ul>
+          <li><i class="fas fa-map-marker-alt"></i>LDA avenue1 Block M plot 1167</li>
+          <li><i class="fas fa-phone"></i> 03079158998</li>
+          <li><i class="fas fa-envelope"></i> vibewear@gmail.com</li>
+        </ul>
+      </div>
+  
+      <div class="footer-section">
+        <h3>Follow Us</h3>
+        <div class="social-links">
+          <a href="#" aria-label="Facebook">
+            <i class="fab fa-facebook-f"></i>
+            <span>Facebook</span>
+          </a>
+          <a href="#" aria-label="Twitter">
+            <i class="fab fa-twitter"></i>
+            <span>Twitter</span>
+          </a>
+          <a href="#" aria-label="Instagram">
+            <i class="fab fa-instagram"></i>
+            <span>Instagram</span>
+          </a>
+          <a href="#" aria-label="LinkedIn">
+            <i class="fab fa-linkedin-in"></i>
+            <span>LinkedIn</span>
+          </a>
+        </div>
+      </div>
+  
+      <div class="footer-section">
+        <h3>About the Company</h3>
+        <p>We are a leading company dedicated to providing high-quality products and services. Our mission is to make your life better through innovation and excellence.</p>
+      </div>
+    </div>
+  
+    <div class="footer-bottom">
+      <p>&copy; 2025 vibewear. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    // Enhanced Cart Functionality
+    document.addEventListener('DOMContentLoaded', function() {
+      let cart = JSON.parse(localStorage.getItem('cart')) || [];
+      const cartItemsContainer = document.getElementById('cart-items');
+      const cartCount = document.querySelector('.cart-count');
+      const subtotalElement = document.getElementById('subtotal');
+      const deliveryChargesElement = document.getElementById('delivery-charges');
+      const totalElement = document.getElementById('total');
+      const checkoutBtn = document.querySelector('.checkout-btn');
+      const DELIVERY_CHARGES = 150; // Rs150 delivery charges
+
+      // Function to extract numeric price from string
+      function getPriceValue(priceStr) {
+        // Remove 'Rs' and any commas, then convert to number
+        return parseFloat(priceStr.replace(/[^\d.]/g, ''));
+      }
+
+      // Format price as Pakistani Rupees
+      function formatPrice(amount) {
+        return 'Rs ' + amount.toLocaleString('en-PK');
+      }
+
+      // Render cart items
+      function renderCartItems() {
+        if (cart.length === 0) {
+          cartItemsContainer.innerHTML = `
+            <div class="empty-cart">
+              <p>Your cart is empty.</p>
+              <a href="home.html" class="btn">Continue Shopping</a>
+            </div>
+          `;
+          subtotalElement.textContent = formatPrice(0);
+          deliveryChargesElement.textContent = formatPrice(DELIVERY_CHARGES);
+          totalElement.textContent = formatPrice(DELIVERY_CHARGES);
+          checkoutBtn.style.display = 'none';
+        } else {
+          // Group items by id and size to handle quantities
+          const cartMap = {};
+          cart.forEach(item => {
+            const key = `${item.id}-${item.size}`;
+            if (!cartMap[key]) {
+              cartMap[key] = {...item, quantity: 1};
+            } else {
+              cartMap[key].quantity++;
+            }
+          });
+          
+          const groupedCart = Object.values(cartMap);
+          
+          cartItemsContainer.innerHTML = groupedCart
+            .map(
+              (item) => `
+                <div class="cart-item">
+                  <img src="${item.image}" alt="${item.name}">
+                  <div class="cart-item-info">
+                    <h3>${item.name}</h3>
+                    <p>${item.price}</p>
+                    <p>Size: ${item.size}</p>
+                    <div class="quantity-controls">
+                      <button class="quantity-btn" data-id="${item.id}" data-size="${item.size}" data-action="decrease">-</button>
+                      <span class="quantity">${item.quantity}</span>
+                      <button class="quantity-btn" data-id="${item.id}" data-size="${item.size}" data-action="increase">+</button>
+                    </div>
+                    <button class="remove-btn" data-id="${item.id}" data-size="${item.size}">Remove</button>
+                  </div>
+                </div>
+              `
+            )
+            .join('');
+
+          // Calculate and update totals
+          updateTotals();
+          checkoutBtn.style.display = 'block';
+        }
+        
+        // Update cart count
+        updateCartCount();
+      }
+
+      // Update cart totals
+      function updateTotals() {
+        const subtotal = cart.reduce((sum, item) => {
+          return sum + getPriceValue(item.price);
+        }, 0);
+        
+        const total = subtotal + DELIVERY_CHARGES;
+        
+        subtotalElement.textContent = formatPrice(subtotal);
+        deliveryChargesElement.textContent = formatPrice(DELIVERY_CHARGES);
+        totalElement.textContent = formatPrice(total);
+      }
+
+      // Update cart count in header
+      function updateCartCount() {
+        const totalItems = cart.reduce((sum, item) => sum + 1, 0);
+        cartCount.textContent = totalItems;
+        
+        // Update cart count in all pages by updating localStorage
+        localStorage.setItem('cartCount', totalItems);
+      }
+
+      // Handle cart interactions
+      cartItemsContainer.addEventListener('click', (e) => {
+        const productId = e.target.getAttribute('data-id');
+        const productSize = e.target.getAttribute('data-size');
+        
+        if (e.target.classList.contains('remove-btn')) {
+          // Remove all items with this id and size
+          cart = cart.filter(item => !(item.id === productId && item.size === productSize));
+          showNotification('Item removed from cart');
+        } 
+        else if (e.target.classList.contains('quantity-btn')) {
+          const action = e.target.getAttribute('data-action');
+          
+          if (action === 'increase') {
+            // Find first item with this id and size to duplicate
+            const itemToAdd = cart.find(item => item.id === productId && item.size === productSize);
+            if (itemToAdd) {
+              cart.push({...itemToAdd});
+              showNotification('Quantity increased');
+            }
+          } 
+          else if (action === 'decrease') {
+            // Find last index of this item to remove one
+            const lastIndex = cart.map((item, index) => 
+              (item.id === productId && item.size === productSize) ? index : -1
+            ).filter(i => i !== -1).pop();
+            
+            if (lastIndex !== undefined) {
+              cart.splice(lastIndex, 1);
+              showNotification('Quantity decreased');
+            }
+          }
+        }
+        
+        // Save and update
+        localStorage.setItem('cart', JSON.stringify(cart));
+        renderCartItems();
+      });
+
+      // Checkout button handler
+      checkoutBtn.addEventListener('click', function() {
+        if (cart.length > 0) {
+          alert('Proceeding to checkout!');
+          // In a real app, you would redirect to checkout page
+          // window.location.href = 'checkout.html';
+        }
+      });
+
+      // Show notification
+      function showNotification(message) {
+        const notification = document.createElement('div');
+        notification.className = 'cart-notification';
+        notification.textContent = message;
+        document.body.appendChild(notification);
+        
+        setTimeout(() => {
+          notification.classList.add('show');
+          setTimeout(() => {
+            notification.classList.remove('show');
+            setTimeout(() => {
+              document.body.removeChild(notification);
+            }, 300);
+          }, 2000);
+        }, 10);
+      }
+
+      // Initialize
+      renderCartItems();
+    });
+
+    // Function to add items to cart (to be used on product pages)
+    function addToCart(productId, productName, productPrice, productImage, productSize = 'M') {
+      let cart = JSON.parse(localStorage.getItem('cart')) || [];
+      
+      // Add the new item to cart
+      cart.push({
+        id: productId,
+        name: productName,
+        price: productPrice,
+        image: productImage,
+        size: productSize
+      });
+      
+      localStorage.setItem('cart', JSON.stringify(cart));
+      
+      // Update cart count in all pages
+      const cartCountElements = document.querySelectorAll('.cart-count');
+      const totalItems = cart.reduce((sum, item) => sum + 1, 0);
+      cartCountElements.forEach(el => {
+        el.textContent = totalItems;
+      });
+      localStorage.setItem('cartCount', totalItems);
+      
+      // Show notification
+      const notification = document.createElement('div');
+      notification.className = 'cart-notification';
+      notification.textContent = 'Item added to cart!';
+      document.body.appendChild(notification);
+      
+      setTimeout(() => {
+        notification.classList.add('show');
+        setTimeout(() => {
+          notification.classList.remove('show');
+          setTimeout(() => {
+            document.body.removeChild(notification);
+          }, 300);
+        }, 2000);
+      }, 10);
+    }
+
+    // Initialize cart count on page load (for all pages)
+    function initCartCount() {
+      const cart = JSON.parse(localStorage.getItem('cart')) || [];
+      const cartCountElements = document.querySelectorAll('.cart-count');
+      const totalItems = cart.reduce((sum, item) => sum + 1, 0);
+      cartCountElements.forEach(el => {
+        el.textContent = totalItems;
+      });
+    }
+
+    // Call this on all pages to keep cart count updated
+    initCartCount();
+    function toggleMenu() {
+  document.getElementById("menu").classList.toggle("active");
+}
+function toggleMenu() {
+  document.getElementById("menu").classList.toggle("active");
+}
+  </script>
+
+
+</body>
+</html>

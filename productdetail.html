@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Product Detail - Vibe Wear</title>
+  <link rel="stylesheet" href="productdetail.css">
+  <link rel="stylesheet" href="styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+ 
+  <header>
+    <div class="container">
+      <div class="logo">
+        <img src="images/logo2.png" alt="Vibe Wear Logo">
+        <h1>Vibe Wear</h1>
+      </div>
+      <div class="menu-toggle" onclick="toggleMenu()">
+        <i class="fas fa-bars"></i>
+      </div>
+      <nav>
+        <ul id="menu">
+          <li><a href="home.html">Home</a></li>
+          <li><a href="men.html">Men</a></li>
+          <li><a href="women.html">Women</a></li>
+          <li><a href="kids.html">Kids</a></li>
+        </ul>
+      </nav>
+      <div class="header-icons">
+        <div class="cart-icon">
+          <a href="signup.html" class="login-icon" title="Login/Signup">
+            <i class="fas fa-user-lock"></i>
+          </a>
+          <a href="cart.html" class="cart-icon">
+            <img src="images/icon.jpg" alt="Cart">
+            <span class="cart-count">0</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  
+  <section class="product-detail">
+    <div class="container">
+      <div class="product-image">
+        <img id="product-image" src="" alt="Product Image">
+      </div>
+      <div class="product-info">
+        <h1 id="product-name">Product Name</h1>
+        <p id="product-price">$0.00</p>
+        <div class="size-chart">
+          <h3>Select Size</h3>
+          <div class="sizes">
+            <button class="size-button" data-size="small">Small</button>
+            <button class="size-button" data-size="medium">Medium</button>
+            <button class="size-button" data-size="large">Large</button>
+          </div>
+          <button id="view-size-chart" class="btn size-chart-btn">View Size Chart</button>
+          <div id="size-chart-content" class="size-chart-content">
+            <h3>Size Chart</h3>
+            <table>
+              <thead>
+                <tr>
+                  <th>Size</th>
+                  <th>Chest (in)</th>
+                  <th>Waist (in)</th>
+                  <th>Hip (in)</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Small</td>
+                  <td>34-36</td>
+                  <td>28-30</td>
+                  <td>36-38</td>
+                </tr>
+                <tr>
+                  <td>Medium</td>
+                  <td>38-40</td>
+                  <td>32-34</td>
+                  <td>40-42</td>
+                </tr>
+                <tr>
+                  <td>Large</td>
+                  <td>42-44</td>
+                  <td>36-38</td>
+                  <td>44-46</td>
+                </tr>
+              </tbody>
+            </table>
+            <button id="hide-size-chart" class="btn size-chart-btn">Hide Size Chart</button>
+          </div>
+        </div>
+        <button id="add-to-cart" class="btn">Add to Cart</button>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-container">
+    
+      <div class="footer-section">
+        <h3>Contact Us</h3>
+        <ul>
+          <li><i class="fas fa-map-marker-alt"></i>LDA avenue1 Block M plot 1167</li>
+          <li><i class="fas fa-phone"></i> 03079158998</li>
+          <li><i class="fas fa-envelope"></i> vibewear@gmail.com</li>
+        </ul>
+      </div>
+  
+     
+      <div class="footer-section">
+        <h3>Follow Us</h3>
+        <div class="social-links">
+          <a href="#" aria-label="Facebook">
+            <i class="fab fa-facebook-f"></i>
+            <span>Facebook</span>
+          </a>
+          <a href="#" aria-label="Twitter">
+            <i class="fab fa-twitter"></i>
+            <span>Twitter</span>
+          </a>
+          <a href="#" aria-label="Instagram">
+            <i class="fab fa-instagram"></i>
+            <span>Instagram</span>
+          </a>
+          <a href="#" aria-label="LinkedIn">
+            <i class="fab fa-linkedin-in"></i>
+            <span>LinkedIn</span>
+          </a>
+        </div>
+      </div>
+  
+      
+      <div class="footer-section">
+        <h3>About the Company</h3>
+        <p>We are a leading company dedicated to providing high-quality products and services. Our mission is to make your life better through innovation and excellence.</p>
+      </div>
+    </div>
+  
+    
+    <div class="footer-bottom">
+      <p>&copy; 2025 vibewear. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+  
+  
+  
+const urlParams = new URLSearchParams(window.location.search);
+const productId = urlParams.get('id');
+
+
+
+const products = {
+  '1': { id: '1', name: 'Red shirt', price: 'PKR 2000', image: 'images/women1.jpg', quantity: 1 },
+  '2': { id: '2', name: 'Blue dress shirt', price: 'PKR 2500', image: 'images/women2.jpg', quantity: 1 },
+  '3': { id: '3', name: 'Green frock', price: 'PKR 1500', image: 'images/women3.webp', quantity: 1 },
+  '4': { id: '4', name: 'Yellow', price: 'PKR 3900', image: 'images/women4.jpg', quantity: 1 },
+  '5': { id: '5', name: 'White shirt', price: 'PKR 2000', image: 'images/women5.jpg', quantity: 1 },
+  '6': { id: '6', name: 'long frock', price: 'PKR 2900', image: 'images/women3.webp', quantity: 1 },
+  '7': { id: '7', name: 'Black shalwar kameez', price: 'PKR3000', image: 'images/trend1.jpg', quantity: 1 },
+  '8': { id: '8', name: 'Black sharara chifon', price: 'PKR 1200', image: 'images/trend2.jpg', quantity: 1 },
+  '9': { id: '9', name: 'white long shirt', price: 'PKR 1500', image: 'images/trend3.jpg', quantity: 1 },
+  '10': { id: '10', name: 'lawn shalwar kameez', price: 'PKR 1500', image: 'images/trend4.webp', quantity: 1 },
+  '11': { id: '11', name: 'flourish white', price: 'PKR 3900', image: 'images/trend5.jpg', quantity: 1 },
+  '12': { id: '12', name: '3pcs pink dress', price: 'PKR 4000', image: 'images/trend6.jpg', quantity: 1 },
+  '13': { id: '13', name: 'blue shalwar kameez', price: 'PKR 4000', image: 'images/recomen1.jpg', quantity: 1 },
+  '14': { id: '14', name: 'white frock', price: 'PKR 3000', image: 'images/recommend2.jpg', quantity: 1 },
+  '15': { id: '15', name: 'blue suit', price: 'PKR 2000', image: 'images/recoomend3.jpg', quantity: 1 },
+  '16': { id: '16', name: 'yellow dress', price: 'PKR 3000', image: 'images/recomment4.jpg', quantity: 1 },
+  '17': { id: '17', name: 'shalwar kameez', price: 'PKR 5000', image: 'images/recommend5.jpg', quantity: 1 },
+  '18': { id: '18', name: 'maroon dress lawn', price: 'PKR 9000', image: 'images/recomment6.jpg', quantity: 1 },
+  '19': { id: '19', name: 'wool jacket', price: '$79.99', image: 'images/winter1.jpg', quantity: 1 },
+  '20': { id: '20', name: 'long wool frock', price: 'PKR 7000', image: 'images/winter2.jpg', quantity: 1 },
+  '21': { id: '21', name: 'KHADDAR shirt', price: 'PKR 2000', image: 'images/winter3.jpg', quantity: 1 },
+  '22': { id: '22', name: 'yellow suit', price: 'PKR 5000', image: 'images/winter4.jpg', quantity: 1 },
+  '23': { id: '23', name: 'Green khaddar suit', price: 'PKR 6000', image: 'images/winter5.jpg', quantity: 1 },
+  '24': { id: '24', name: 'marron khadar', price: 'PKR 6000', image: 'images/winter6.jpg', quantity: 1 },
+  '25': { id: '25', name: 'BLUE khadar suit', price: 'PKR 7000', image: 'images/winter7.jpg', quantity: 1 },
+  '26': { id: '26', name: 'Green khadar', price: 'PKR 6000', image: 'images/winter8.jpg', quantity: 1 },
+  '27': { id: '27', name: 'skyblue khadar', price: 'PKR 7000', image: 'images/winter9.jpg', quantity: 1 },
+  '28': { id: '28', name: 'white frock', price: 'PKR 3000', image: 'images/lawn1.jpg', quantity: 1 },
+  '29': { id: '29', name: 'Green lawn suit', price: 'PKR 6000', image: 'images/lawn2.jpg', quantity: 1 },
+  '30': { id: '30', name: 'white lawn suit', price: 'PKR 2000', image: 'images/lawn3.jpg', quantity: 1 },
+  '31': { id: '31', name: 'flowrish lawn', price: 'PKR 3000', image: 'images/lawn4.jpg', quantity: 1 },
+  '32': { id: '32', name: 'Purple lawn', price: 'PKR 3000', image: 'images/lawn5.jpg', quantity: 1 },
+  '33': { id: '33', name: 'Skyblue lawn', price: 'PKR 5000', image: 'images/lawn6.jpg.crdownload', quantity: 1 },
+  '34': { id: '34', name: 'NAVy blue shirt', price: 'PKR 2000', image: 'images/lawn7.jpg', quantity: 1 },
+  '35': { id: '35', name: 'pink lawn', price: 'pkR 4000', image: 'images/lawn8.jpg', quantity: 1 },
+  '36': { id: '36', name: 'RED lawn suit', price: 'PKR 7000', image: 'images/lawn9.jpg', quantity: 1 },
+  '37': { id: '37', name: 'RED lawn suit', price: 'PKR 7000', image: 'images/lawn9.jpg', quantity: 1 },
+  '38': { id: '38', name: 'Maroon Kurti', price: 'PKR 3000', image: 'images/maroon.jpg', quantity: 1 },
+  '39': { id: '39', name: 'Beige Kurti', price: 'PKR 2500', image: 'images/beige.jpg', quantity: 1 },
+  '40': { id: '40', name: 'Pink Kurti', price: 'PKR 4000', image: 'images/pink.jpg', quantity: 1 },
+  '41': { id: '41', name: 'Black Kurti', price: 'PKR 3500', image: 'images/black.jpg', quantity: 1 },
+  '42': { id: '42', name: 'Brown Kurti', price: 'PKR 3500', image: 'images/brown.jpg', quantity: 1 },
+  '43': { id: '43', name: 'Blue Kurti', price: 'PKR 3500', image: 'images/blue.jpg', quantity: 1 },
+  '44': { id: '44', name: 'Gray Kurti', price: 'PKR 3500', image: 'images/gray.jpg', quantity: 1 },
+  '45': { id: '45', name: 'Green Kurti', price: 'PKR 3500', image: 'images/green.jpg', quantity: 1 },
+  '46': { id: '46', name: 'Gray Kurti', price: 'PKR 3500', image: 'images/gray1.jpg', quantity: 1 },
+  '47': { id: '47', name: 'white shirt', price: 'PKR 3000', image: 'images/new.jpg', quantity: 1 },
+  '48': { id: '48', name: 'Red lawn suit', price: 'PKR 6000', image: 'images/new1.jpg', quantity: 1 },
+  '49': { id: '49', name: 'Black frock', price: 'PKR 2000', image: 'images/new2.jpg', quantity: 1 },
+  '50': { id: '50', name: 'flowrish chiffo', price: 'PKR 3000', image: 'images/new3.jpg', quantity: 1 },
+
+  '51': { id: '51', name: 'offwhite lawn', price: 'PKR 3000', image: 'images/new4.jpg', quantity: 1 },
+  '52': { id: '52', name: 'yellow chiffon suit', price: 'PKR 5000', image: 'images/new5.jpg', quantity: 1 },
+  '53': { id: '53', name: 'NAVy blue shirt', price: 'PKR 2000', image: 'images/new5.jpg', quantity: 1 },
+  '54': { id: '54', name: 'yellow lawn', price: 'pkR 4000', image: 'images/new6.jpg', quantity: 1 },
+  '55': { id: '55', name: 'Yellowlawn suit', price: 'PKR 7000', image: 'images/new7.jpg', quantity: 1 },
+  '56': { id: '56', name: 'Eid sharara', price: 'PKR 3000', image: 'images/kid1.jpg', quantity: 1 },
+  '57': { id: '57', name: 'white frock', price: 'PKR 6000', image: 'images/kid2.jpg', quantity: 1 },
+  '58': { id: '58', name: 'cords set', price: 'PKR 2000', image: 'images/kid3.jpg', quantity: 1 },
+  '59': { id: '59', name: 'REd frock', price: 'pkR 3000', image: 'images/kid4.jpg', quantity: 1 },
+  '60': { id: '60', name: 'Pink shalwar kameez', price: 'PKR 3000', image: 'images/kid5.jpg', quantity: 1 },
+
+  '61': { id: '61', name: 'black frock', price: 'PKR 5000', image: 'images/kid6.jpg', quantity: 1 },
+  
+  '62': { id: '62', name: 'eid collection', price: 'PKR 2000', image: 'images/kid7.jpg', quantity: 1 },
+  '63': { id: '63', name: 'Purple suit', price: 'PKR 4000', image: 'images/kid8.jpg', quantity: 1 },
+  '64': { id: '64', name: 'skyblue froc', price: 'PKR 7000', image: 'images/kid9.jpg', quantity: 1 },
+  '65': { id: '65', name: 'Eid suite', price: 'PKR 6000', image: 'images/men1.jpg', quantity: 1 },
+  
+  '66': { id: '66', name: 'kurta', price: 'PKR 6000', image: 'images/men2.jpg', quantity: 1 },
+  '67': { id: '67', name: 'kurta pajama', price: 'PKR 2000', image: 'images/men3.jpg', quantity: 1 },
+  '68': { id: '68', name: 'eid vibes', price: 'PKR 3000', image: 'images/men4.jpg', quantity: 1 },
+  '69': { id: '69', name: 'blue kurta', price: 'PKR 3500', image: 'images/men5.jpg', quantity: 1 },
+  '70': { id: '70', name: 'Eid collection', price: 'PKR 3000', image: 'images/men6.jpg', quantity: 1 },
+  '71': { id: '71', name: 'Eid collection', price: 'PKR 2000', image: 'images/men8.jpg', quantity: 1 },
+  '72': { id: '72', name: 'Eid collection', price: 'PKR 4000', image: 'images/men9.jpg', quantity: 1 },
+  '73': { id: '73', name: 'eid collection', price: 'PKR 7000', image: 'images/men10.jpg', quantity: 1 },
+
+
+ 
+
+
+
+}
+
+  
+
+
+
+const product = products[productId];
+  if (product) {
+    document.getElementById('product-name').textContent = product.name;
+    document.getElementById('product-price').textContent = product.price;
+    document.getElementById('product-image').src = product.image;
+  } else {
+    document.getElementById('product-name').textContent = 'Product Not Found';
+  }
+
+  // Initialize cart from localStorage or empty array if none exists
+  let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+  document.getElementById('add-to-cart').addEventListener('click', () => {
+    if (product) {
+      const selectedSize = document.querySelector('.size-button.active');
+      if (!selectedSize) {
+        alert('Please select a size before adding to the cart.');
+        return;
+      }
+
+      const size = selectedSize.getAttribute('data-size');
+      
+      // Check if product with same ID and size already exists in cart
+      const existingIndex = cart.findIndex(item => item.id === product.id && item.size === size);
+      
+      if (existingIndex !== -1) {
+        // If exists, increment quantity
+        cart[existingIndex].quantity += 1;
+      } else {
+        // If new, add to cart with quantity 1
+        cart.push({
+          id: product.id,
+          name: product.name,
+          price: product.price,
+          image: product.image,
+          size: size,
+          quantity: 1
+        });
+      }
+      
+      // Save updated cart to localStorage
+      localStorage.setItem('cart', JSON.stringify(cart));
+      
+      // Update cart count display
+      updateCartCount();
+      
+      // Show success message
+      showNotification('Item added to cart!');
+    } else {
+      alert('No product selected. Please select a product to add to the cart.');
+    }
+  });
+
+  // Function to update cart count in header
+  function updateCartCount() {
+    const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+    document.querySelector('.cart-count').textContent = totalItems;
+    
+    // Also update in localStorage for other pages
+    localStorage.setItem('cartCount', totalItems);
+  }
+
+  // Function to show notification
+  function showNotification(message) {
+    const notification = document.createElement('div');
+    notification.className = 'cart-notification';
+    notification.textContent = message;
+    document.body.appendChild(notification);
+    
+    setTimeout(() => {
+      notification.classList.add('show');
+      setTimeout(() => {
+        notification.classList.remove('show');
+        setTimeout(() => {
+          document.body.removeChild(notification);
+        }, 300);
+      }, 2000);
+    }, 10);
+  }
+
+  // Initialize cart count on page load
+  updateCartCount();
+
+  // Size selection functionality
+  const sizeButtons = document.querySelectorAll('.size-button');
+  sizeButtons.forEach((button) => {
+    button.addEventListener('click', () => {
+      sizeButtons.forEach((btn) => btn.classList.remove('active'));
+      button.classList.add('active');
+    });
+  });
+
+  // Size chart toggle
+  const viewSizeChartButton = document.getElementById('view-size-chart');
+  const hideSizeChartButton = document.getElementById('hide-size-chart');
+  const sizeChartContent = document.getElementById('size-chart-content');
+
+  viewSizeChartButton.addEventListener('click', () => {
+    sizeChartContent.style.display = 'block';
+    viewSizeChartButton.style.display = 'none';
+  });
+
+  hideSizeChartButton.addEventListener('click', () => {
+    sizeChartContent.style.display = 'none';
+    viewSizeChartButton.style.display = 'block';
+  });
+
+  // Add this CSS for notifications
+  const style = document.createElement('style');
+  style.textContent = `
+    .cart-notification {
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%) translateY(100px);
+      background: #4CAF50;
+      color: white;
+      padding: 15px 25px;
+      border-radius: 4px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+      z-index: 1000;
+      transition: transform 0.3s ease, opacity 0.3s ease;
+      opacity: 0;
+    }
+    .cart-notification.show {
+      transform: translateX(-50%) translateY(0);
+      opacity: 1;
+    }
+  `;
+  document.head.appendChild(style);
+</script>
+
+
+    <script src="script.js"></script>
+</body>
+</html>
